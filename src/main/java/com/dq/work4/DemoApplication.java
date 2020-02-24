@@ -7,9 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.dq.work4.mapper")
 @SpringBootApplication
 public class DemoApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }
-
 }

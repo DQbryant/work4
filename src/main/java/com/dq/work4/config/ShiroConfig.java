@@ -31,6 +31,7 @@ public class ShiroConfig {
         filterMap.put("/deletefile","authc");
         filterMap.put("/deletefiles","authc");
         filterMap.put("/examine","authc");
+        filterMap.put("/user/logout","logout");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
         return shiroFilterFactoryBean;
     }

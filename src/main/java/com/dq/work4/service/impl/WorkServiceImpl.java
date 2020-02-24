@@ -40,4 +40,9 @@ public class WorkServiceImpl implements WorkService {
     public int updWork(Work work) {
         return workMapper.updWork(work);
     }
+
+    @Override
+    public Work selWorkById(int wid) {
+        return workMapper.selWorkById(wid);
+    }
 }

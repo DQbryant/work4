@@ -13,4 +13,5 @@ public interface WorkService {
     int delWork(int wid);
     Work selWork(String filename);
     int updWork(Work work);
+    Work selWorkById(int wid);
 }

@@ -26,7 +26,7 @@ public class LoginController {
     @Autowired
     LoginService loginServiceImpl;
     @ResponseBody
-    @RequestMapping("/user/login")
+    @RequestMapping("/user/login")      //登录,为了方便服务器登录下载文件,才选择了Request,不然应该是Post
     public ResponseEntity login(String username, String password, HttpSession session){
         //获取当前用户
         Subject subject = SecurityUtils.getSubject();
@@ -39,5 +39,12 @@ public class LoginController {
         logger.info(username+"登录了");
         session.setAttribute("user",loginServiceImpl.login(username));
         return new ResponseEntity(HttpStatus.OK);
+    }
+    @ResponseBody
+    @RequestMapping("/logout")
+    public ResponseEntity logout(HttpSession session){
+        if (session.getAttribute("user")!=null){
+            return new ResponseEntity(HttpStatus.OK);
+        }else return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
     }
 }

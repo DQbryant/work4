@@ -25,8 +25,11 @@ public class ExamController {
     @Autowired
     ExamService examServiceImpl;
     @ResponseBody
-    @PostMapping("/exam/add")
-    public ResponseEntity addExam(String name,@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date deadline,String content, HttpSession session){
+    @PostMapping("/exam/add")     //添加考核
+    public ResponseEntity addExam(String name,
+                                  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date deadline,
+                                  String content,
+                                  HttpSession session){
         User user = (User)session.getAttribute("user");
         Exam exam = new Exam(name,deadline,user.getUid(),content);
         int result = examServiceImpl.addExam(exam);
@@ -36,7 +39,7 @@ public class ExamController {
         }else return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
     }
     @ResponseBody
-    @DeleteMapping("/exam/delete")
+    @DeleteMapping("/exam/delete")//删除考核
     public ResponseEntity delExam(int eid,HttpSession session){
         int result = examServiceImpl.delExam(eid);
         User user = (User) session.getAttribute("user");
@@ -46,19 +49,23 @@ public class ExamController {
         }else return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
     }
     @ResponseBody
-    @GetMapping("/exam/select")
+    @GetMapping("/exam/select")  //查询单个考核
     public Exam selExam(int eid){
         return examServiceImpl.getExamById(eid);
     }
     @ResponseBody
-    @GetMapping("/exams")
+    @GetMapping("/exams")       //查看所有考核
     public List<Exam> selExams(HttpSession session){
         User user = (User) session.getAttribute("user");
         return examServiceImpl.selExam(user);
     }
     @ResponseBody
-    @PutMapping("/exam/update")
-    public ResponseEntity updExam(int eid,String name,@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date deadline,String content,HttpSession session){
+    @PutMapping("/exam/update") //更新考核
+    public ResponseEntity updExam(int eid,
+                                  String name,
+                                  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date deadline,
+                                  String content,
+                                  HttpSession session){
         Exam exam = examServiceImpl.getExamById(eid);
         exam.setName(name);
         exam.setDeadline(deadline);

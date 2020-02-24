@@ -22,6 +22,9 @@ public interface WorkMapper {
     @Select("select * from work where filename=#{0}")
     Work selWork(String filename);
 
+    @Select("select * from work where wid=#{0}")
+    Work selWorkById(int wid);
+
     @Delete("delete from work where wid=#{0}")
     int delWork(int wid);
     @Update("update work set status=#{status},tname=#{tname} where wid=#{wid}")
